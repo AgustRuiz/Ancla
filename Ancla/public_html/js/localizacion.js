@@ -1,57 +1,21 @@
-function localize()
-		{
-			/* Si se puede obtener la localización */
-		 	if (navigator.geolocation)
-			{
-                navigator.geolocation.getCurrentPosition(mapa,error);
-            }
-            /* Si el navegador no soporta la recuperación de la geolocalización */
-            else
-            {
-                alert('¡Oops! Tu navegador no soporta geolocalización.');
-            }
-		}
+function initialize() {
+    var mapOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 8,
+        disableDefaultUI: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
 
-		function mapa(pos)
-		{
-			/* Obtenemos los parámetros de la API de geolocalización HTML*/
-			var latitud = pos.coords.latitude;
-			var longitud = pos.coords.longitude;
-			var precision = pos.coords.accuracy;
-
-			/* A través del DOM obtenemos el div que va a contener el mapa */
-			var contenedor = document.getElementById("map")
-
-			/* Posicionamos un punto en el mapa con las coordenadas que nos ha proporcionado la API*/
-			var centro = new google.maps.LatLng(latitud,longitud);
-
-			/* Definimos las propiedades del mapa */
-			var propiedades =
-			{
-                zoom: 15,
-                center: centro,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-
-			/* Creamos el mapa pasandole el div que lo va a contener y las diferentes propiedades*/
-			var map = new google.maps.Map(contenedor, propiedades);
-
-			/* Un servicio que proporciona la API de GM es colocar marcadores sobre el mapa */
-			var marcador = new google.maps.Marker({
-                position: centro,
-                map: map,
-                title: "Tu localizacion"
-            });
-		}
-
-		/* Gestion de errores */
-		function error(errorCode)
-		{
-			if(errorCode.code == 1)
-				alert("No has permitido buscar tu localizacion")
-			else if (errorCode.code==2)
-				alert("Posicion no disponible: "+errorCode.message)
-			else
-				alert("Ha ocurrido un error")
-		}
- 
+}
+function errores(err) {
+    if (err.code === 0)
+        alert("Oops! Error desconocido: " + err.message);
+    if (err.code === 1)
+        alert("Oops! Se le ha negado el permiso para recuperar una posición.");
+    if (err.code === 2)
+        alert("Oops! El navegador no ha podido determinar una posición: " + err.message);
+    if (err.code === 3)
+        alert("Oops! Hemos superado el tiempo de espera");
+}
