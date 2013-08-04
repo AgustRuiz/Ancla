@@ -21,8 +21,6 @@ function initialize() {
             map.panTo(marker.getPosition());
         }, 3000);
     });//*/
-    
-    document.getElementById("rutaPRUEBA").innerHTML=document.URL;
 }
 
 function onSuccess(position) {
@@ -54,6 +52,9 @@ function onSuccess(position) {
             animation: google.maps.Animation.DROP
         });
     }
+    
+    //Pintar anclas
+    pintarAnclas();
 
 }
 function onError(err) {
