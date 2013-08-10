@@ -10,6 +10,7 @@ html, body{
     height: 100%;
     padding: 0;
     margin: 0;
+    background-color: #eee;
 }
 
 .alto100{
@@ -35,12 +36,12 @@ html, body{
     padding-right: 20px;
 }
 
-.estatico{
+.estatico1{
     position: absolute;
     width: 100%;
     top: 0px;
     left: 0px;
-    z-index: 99;
+    z-index: 1;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -50,8 +51,27 @@ html, body{
     overflow-y: auto;
 }
 
+.noScrolling{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .maxHeight80{
+    height: 80%;
     max-height: 80%;
+}
+
+.maxHeight90{
+    max-height: 90%;
+}
+
+.maxHeight95{
+    max-height: 95%;
+}
+
+.maxHeight100{
+    min-height: 100%;
+    max-height: 100%;
 }
 
 .centrado{
@@ -94,4 +114,25 @@ html, body{
     background-repeat: repeat-x;
     border-color: #222222 #222222 #000000;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.modalScrolling{
+    position: relative;
+    max-width: 95%;
+}
+
+.modalScrolling .modal-body {
+    overflow: hidden;
+    height: auto;
+    max-height: 100%;
+}
+
+
+.estatico0{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0px;
+    left: 0px;
+    overflow: visible;
 }

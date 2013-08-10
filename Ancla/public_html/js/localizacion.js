@@ -1,9 +1,24 @@
+/**
+ * Estado de localización (on/off)
+ * @type Boolean|Boolean|Boolean
+ */
 var estadoLocalizacion = true;
+/**
+ * Posición actual de la geolocalización
+ * @type @exp;google@pro;maps@call;Marker
+ */
 var posActual;
+/**
+ * Mapa
+ * @type @exp;google@pro;maps@call;Map
+ */
 var mapa;
 
+/**
+ * Inicialización del mapa
+ * @returns {void}
+ */
 function initialize() {
-
     // Esperamos que cargue PhoneGap. Quitar cuando se esté probando en HTML
     //document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -12,17 +27,13 @@ function initialize() {
     var op1 = {enableHighAccuracy: true, maximumAge: 60000, timeout: 45000};
     navigator.geolocation.getCurrentPosition(onSuccess, onError, op1);
     //}
-
-/*
-    google.maps.event.addListener(map, 'center_changed', function() {
-        // 3 seconds after the center of the map has changed, pan back to the
-        // marker.
-        window.setTimeout(function() {
-            map.panTo(marker.getPosition());
-        }, 3000);
-    });//*/
 }
 
+/**
+ * Función para trabajar con la posición actual obtenida en la geolocalización
+ * @param {Position} position Posición en el mapa (objeto de la API)
+ * @returns {void}
+ */
 function onSuccess(position) {
 
     //Obtener la posición
@@ -45,10 +56,9 @@ function onSuccess(position) {
 
     //Marcador en el mapa
     if (estadoLocalizacion) {
-        var posActual = new google.maps.Marker({
+        posActual = new google.maps.Marker({
             position: mapa.getCenter(),
             map: mapa,
-            title: "Estás aquí",
             animation: google.maps.Animation.DROP
         });
     }
@@ -57,6 +67,12 @@ function onSuccess(position) {
     pintarAnclas();
 
 }
+
+/**
+ * Gestión de errores al obtener la posición actual en la geolocalización
+ * @param {int} err Código del error
+ * @returns {void}
+ */
 function onError(err) {
     var msg = "";
     switch (err) {
@@ -77,6 +93,10 @@ function onError(err) {
     alert(msg);
 }
 
+/**
+ * Cambia el estado del programa encendiendo/apagando el traking de la posición actual
+ * @returns {void}
+ */
 function switchTraking() {
     var icono = document.getElementById("iconoEstado");
     var boton = document.getElementById("botonEstado");
@@ -85,12 +105,15 @@ function switchTraking() {
         //Desactivar
         icono.className = "iconoEstadoOff";
         boton.className = "";
+        //posActual.setMap(null);
         estadoLocalizacion = false;
     } else {
         //Activar
         icono.className = "iconoEstadoOn";
         boton.className = "active";
+        //posActual.setMap(mapa);
+        //posActual.setAnimation(google.maps.Animation.DROP);
         estadoLocalizacion = true;
     }
-    initialize();
+    //initialize();
 }

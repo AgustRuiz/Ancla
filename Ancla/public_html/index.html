@@ -10,7 +10,7 @@
 
     </head>
     <body onload="initialize();">
-        <div class="estatico">
+        <div class="estatico1">
             <div class="navbar navbar-inverse navbar-fixed-top"> <!-- navbar-inverse -->
                 <div class="navbar-inner">
                     <div class="container" style="padding-left: 20px; padding-right: 20px;">
@@ -30,7 +30,7 @@
                                 <li class="active" id="botonEstado"><a href="#" onclick="switchTraking()">On/Off Geolocalización</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plantar ancla<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" data-toggle="collapse" data-target=".nav-collapse"> <!-- Autocolapsa al hacer clic -->
                                         <li><a href="#" onclick="placeMarker('roja')"><img src="img/markers/ancla_roja.png"/>Roja</a></li>
                                         <li><a href="#" onclick="placeMarker('amarilla')"><img src="img/markers/ancla_amarilla.png"/>Amarilla</a></li>
                                         <li><a href="#" onclick="placeMarker('verde')"><img src="img/markers/ancla_verde.png"/>Verde</a></li>
@@ -44,16 +44,24 @@
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mis anclas<b class="caret"></b></a>
-                                    <ul class="dropdown-menu" id="menuAnclas">
+                                    <ul class="dropdown-menu" id="menuAnclas" data-toggle="collapse" data-target=".nav-collapse"> <!-- Autocolapsa al hacer clic -->
                                         <li class="disabled"><a href="#">No tienes ningún ancla</a></li>
                                     </ul>
                                 </li>
                                 <li><a data-toggle="modal" href="#acercade" >Acerca de...</a></li>
+
+
+                                <li>
+                                    <a href="#windowTitleDialog" data-toggle="modal">Demo modal</a>
+                                </li>
+
+
                             </ul>
                         </div>
                     </div>
                 </div>
             </div> <!-- /navbar -->
+
         </div>
 
         <div class="container alto100 ancho100"> <!-- container -->
@@ -62,61 +70,118 @@
             </div>
         </div> <!-- /container -->
 
-        <div class="modal hide maxHeight80 scrollingVertical" id="acercade" > <!-- Acerca de -->
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal">&times;</a>
-                <h3>Ancla 0.1</h3>
-            </div>
-            <div class="modal-body">
-                <strong>Ancla</strong> es un proyecto libre
-                <div><strong>Versión del producto</strong>: 0.1 (en desarrollo, 04/08/2013-21:40)</div>
-                <div><strong>Desarrollador</strong>: <a href="http://twitter.com/AgustRuiz" target="_blank">Agustín Ruiz</a></div>
-            </div>
-            <div class="modal-body centrado">
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_CO"><img alt="Licencia Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Ancla</span> por <a xmlns:cc="http://creativecommons.org/ns#" href="http://twitter.com/AgustRuiz" property="cc:attributionName" rel="cc:attributionURL">Agustín Ruiz Linares</a> se encuentra bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_CO">Licencia Creative Commons Atribución-CompartirIgual 3.0 Unported</a>.
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-            </div>
-        </div> <!-- /Acerca de -->
+
+        <div class="estatico0">
+            <div class="modal hide fade modalScrolling" id="acercade" > <!-- Acerca de -->
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h3>Ancla 0.1</h3>
+                </div>
+                <div class="modal-body">
+                    <strong>Ancla</strong> es un proyecto libre que usa Phonegap y GoogleMaps
+                    <div><strong>Versión del producto</strong>: 0.1 (en desarrollo, 10/08/2013-21:45)</div>
+                    <div><strong>Desarrollador</strong>: <a href="http://twitter.com/AgustRuiz" target="_blank">Agustín Ruiz</a></div>
+                </div>
+                <div class="modal-body centrado">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_CO"><img alt="Licencia Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Ancla</span> por <a xmlns:cc="http://creativecommons.org/ns#" href="http://twitter.com/AgustRuiz" property="cc:attributionName" rel="cc:attributionURL">Agustín Ruiz Linares</a> se encuentra bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_CO">Licencia Creative Commons Atribución-CompartirIgual 3.0 Unported</a>.
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div> <!-- /Acerca de -->
 
 
 
-        <div class="modal hide maxHeight80 scrollingVertical" id="menuAncla" > <!-- Menú ancla -->
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal">&times;</a>
-                <h3 id="menuAnclaTitulo"></h3>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label" for="inputNombre">Descripción del ancla</label>
-                        <div class="controls">
-                            <input type="text" id="inputNombre" name="nombre" placeholder="Escribe el nombre del ancla" value=""/>
+            <div class="modal hide fade modalScrolling" id="menuAncla" > <!-- Menú ancla -->
+                <a name="menuAncla"></a>
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h3 id="menuAnclaTitulo"></h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputNombre">Nombre del ancla</label>
+                            <div class="controls">
+                                <input type="text" class="input-block-level" id="inputNombre" name="nombre" placeholder="Escribe el nombre del ancla" value=""/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputMarcador">Color del ancla</label>
-                        <div class="controls">
-                            <select id="inputMarcador" name="marcador">
-                                <option value="roja">Roja</option>
-                                <option value=""></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                                <option></option>
-                            </select>
+                        <div class="control-group">
+                            <label class="control-label" for="inputMarcador">Color del ancla</label>
+                            <div class="controls">
+                                <select id="inputMarcador" name="marcador" class="input-block-level">
+                                    <option value="roja">Roja</option>
+                                    <option value="amarilla">Amarilla</option>
+                                    <option value="verde">Verde</option>
+                                    <option value="azul">Azul</option>
+                                    <option value="naranja">Naranja</option>
+                                    <option value="morada">Morada</option>
+                                    <option value="marron">Marrón</option>
+                                    <option value="blanca">Blanca</option>
+                                    <option value="negra">Negra</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="control-group">
+                            <label class="control-label" for="textareaDescripcion">Descripción del ancla</label>
+                            <div class="controls">
+                                <textarea id="textareaDescripcion" class="input-block-level" name="descripcion" placeholder="Escribe una descripción del ancla"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="menuAnclaBtnEliminar" class="btn btn-danger">Eliminar</a>
+                    <a href="#" id="menuAnclaBtnGuardar" class="btn btn-primary">Guardar</a>
+                    <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+                </div>
+            </div> <!-- /Menú ancla -->
+
+
+
+
+
+
+            <div id="windowTitleDialog" class="modal hide fade modalScrolling">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal" href="#">&times;</a>
+                    <h3>Prueba modal con scrolling</h3>
+                </div>
+                <div class="modal-body">
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                    <p>texto</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger">Eliminar</a>
+                    <a href="#" class="btn btn-primary">Guardar</a>
+                    <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-danger">Eliminar ancla</a>
-                <a href="#" class="btn btn-primary">Guardar cambios</a>
-                <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-            </div>
-        </div> <!-- /Menú ancla -->
+
+        </div>
+
+
+
+
 
         <!-- Scripts de boostrap -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -125,8 +190,8 @@
         <!-- Otros scripts -->
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <!--<script src="js/cordova.js"></script> <!-- Quitar cuando se esté probando en HTML -->
-        <script src="js/localizacion.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+        <script src="js/localizacion.js"></script>
         <script src="js/pruebas.js"></script>
 
     </body>
