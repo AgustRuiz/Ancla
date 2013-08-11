@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/ancla.css">
+        <link href="css/ancla.css" rel="stylesheet">
 
     </head>
     <body onload="initialize();">
@@ -48,14 +48,18 @@
                                         <li class="disabled"><a href="#">No tienes ningún ancla</a></li>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="modal" href="#acercade" >Acerca de...</a></li>
-
-
-                                <li>
-                                    <a href="#windowTitleDialog" data-toggle="modal">Demo modal</a>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frecuencia de refresco<b class="caret"></b></a>
+                                    <ul class="dropdown-menu" id="menuFrecuenciaRefresco">
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);">1 segundo</a></li>
+                                        <li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);">5 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);">10 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);">15 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);">30 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);">60 segundos</a></li>
+                                    </ul>
                                 </li>
-
-
+                                <li><a data-toggle="modal" href="#acercade" >Acerca de...</a></li>
                             </ul>
                         </div>
                     </div>
@@ -70,7 +74,6 @@
             </div>
         </div> <!-- /container -->
 
-
         <div class="estatico0">
             <div class="modal hide fade modalScrolling" id="acercade" > <!-- Acerca de -->
                 <div class="modal-header">
@@ -79,7 +82,7 @@
                 </div>
                 <div class="modal-body">
                     <strong>Ancla</strong> es un proyecto libre que usa Phonegap y GoogleMaps
-                    <div><strong>Versión del producto</strong>: 0.1 (en desarrollo, 10/08/2013-21:45)</div>
+                    <div><strong>Versión del producto</strong>: 0.1 (en desarrollo, 11/08/2013-13:52)</div>
                     <div><strong>Desarrollador</strong>: <a href="http://twitter.com/AgustRuiz" target="_blank">Agustín Ruiz</a></div>
                 </div>
                 <div class="modal-body centrado">
@@ -89,8 +92,6 @@
                     <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
                 </div>
             </div> <!-- /Acerca de -->
-
-
 
             <div class="modal hide fade modalScrolling" id="menuAncla" > <!-- Menú ancla -->
                 <a name="menuAncla"></a>
@@ -136,52 +137,7 @@
                     <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
                 </div>
             </div> <!-- /Menú ancla -->
-
-
-
-
-
-
-            <div id="windowTitleDialog" class="modal hide fade modalScrolling">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal" href="#">&times;</a>
-                    <h3>Prueba modal con scrolling</h3>
-                </div>
-                <div class="modal-body">
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                    <p>texto</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-danger">Eliminar</a>
-                    <a href="#" class="btn btn-primary">Guardar</a>
-                    <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-                </div>
-            </div>
-
-        </div>
-
-
-
-
+        </div> <!-- estatico0 -->
 
         <!-- Scripts de boostrap -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -192,6 +148,7 @@
         <!--<script src="js/cordova.js"></script> <!-- Quitar cuando se esté probando en HTML -->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
         <script src="js/localizacion.js"></script>
+        <script src="js/anclas.js"></script>
         <script src="js/pruebas.js"></script>
 
     </body>

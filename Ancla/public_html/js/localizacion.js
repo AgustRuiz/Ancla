@@ -12,7 +12,7 @@ var posActual;
  * Mapa
  * @type @exp;google@pro;maps@call;Map
  */
-var mapa;
+var mapa = null;
 
 /**
  * Inicialización del mapa
@@ -43,28 +43,36 @@ function onSuccess(position) {
 
     //var location = new google.maps.LatLng(38.115277777778, -3.0872222222222);
 
-    //Opciones de mapa
-    var mapOptions = {
-        center: location,
-        zoom: 19,
-        disableDefaultUI: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+    if (mapa == null) {
+        //Opciones de mapa
+        var mapOptions = {
+            center: location,
+            zoom: 19,
+            draggable: true,
+            disableDefaultUI: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-    //Creamos el mapa
-    mapa = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        //Creamos el mapa
+        mapa = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        //Pintar anclas
+        pintarAnclas();
+    }
 
     //Marcador en el mapa
-    if (estadoLocalizacion) {
+    if (posActual == null) {
         posActual = new google.maps.Marker({
-            position: mapa.getCenter(),
+            position: location,
             map: mapa,
-            animation: google.maps.Animation.DROP
+            title: "(" + latitude + "," + longitude + ")",
         });
+    } else {
+        posActual.setPosition(location);
     }
-    
-    //Pintar anclas
-    pintarAnclas();
+
+    if (estadoLocalizacion)
+        mapa.setCenter(location);
 
 }
 
@@ -105,14 +113,12 @@ function switchTraking() {
         //Desactivar
         icono.className = "iconoEstadoOff";
         boton.className = "";
-        //posActual.setMap(null);
         estadoLocalizacion = false;
     } else {
         //Activar
         icono.className = "iconoEstadoOn";
         boton.className = "active";
-        //posActual.setMap(mapa);
-        //posActual.setAnimation(google.maps.Animation.DROP);
+        mapa.setCenter(posActual.getPosition());
         estadoLocalizacion = true;
     }
     //initialize();
