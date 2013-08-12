@@ -23,13 +23,13 @@ var directionsService = new google.maps.DirectionsService();
  */
 function initialize() {
     // Esperamos que cargue PhoneGap. Quitar cuando se esté probando en HTML
-    document.addEventListener("deviceready", onDeviceReady, false);
+    //document.addEventListener("deviceready", onDeviceReady, false);
 
     // PhoneGap listo. Sacar de la función cuando se esté probando en HTML
-    function onDeviceReady() {
-    var op1 = {enableHighAccuracy: true, maximumAge: 60000, timeout: 0};
+    //function onDeviceReady() {
+    var op1 = {enableHighAccuracy: true, maximumAge: 60000, timeout: 60000};
     navigator.geolocation.getCurrentPosition(onSuccess, onError, op1);
-    }
+    //}
 }
 
 /**
@@ -59,6 +59,7 @@ function onSuccess(position) {
         //Creamos el mapa
         mapa = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
         directionsDisplay.setMap(mapa);
+        directionsDisplay.setPanel(document.getElementById("indicacionesPanel"));
 
         //Pintar anclas
         pintarAnclas();
@@ -103,8 +104,7 @@ function onError(err) {
             break;
 
     }
-    document.getElementById("map-canvas").innerHTML = msg;
-    alert("" + msg);
+    document.getElementById("map-canvas").innerHTML = "<br/><br/><br/><br/><br/><br/>" + msg;
 }
 
 /**
