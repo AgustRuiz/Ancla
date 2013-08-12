@@ -59,6 +59,7 @@
                                         <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);">60 segundos</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="#" onclick="limpiarRuta();">Limpiar ruta</a></li>
                                 <li><a data-toggle="modal" href="#acercade" >Acerca de...</a></li>
                             </ul>
                         </div>
@@ -82,7 +83,7 @@
                 </div>
                 <div class="modal-body">
                     <strong>Ancla</strong> es un proyecto libre que usa Phonegap y GoogleMaps
-                    <div><strong>Versión del producto</strong>: 0.1 (en desarrollo, 11/08/2013-13:52)</div>
+                    <div><strong>Versión del producto</strong>: 0.1 (en desarrollo, 12/08/2013-22:40)</div>
                     <div><strong>Desarrollador</strong>: <a href="http://twitter.com/AgustRuiz" target="_blank">Agustín Ruiz</a></div>
                 </div>
                 <div class="modal-body centrado">
@@ -129,6 +130,12 @@
                                 <textarea id="textareaDescripcion" class="input-block-level" name="descripcion" placeholder="Escribe una descripción del ancla"></textarea>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <a href="#" class="btn btn-primary input-block-level" id="btnRutaCoche">Obtener ruta en coche</a>
+                        </div>
+                        <div class="control-group">
+                            <a href="#" class="btn btn-primary input-block-level" id="btnRutaPie">Obtener ruta a pie</a>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -145,7 +152,7 @@
         <script src="js/vendor/bootstrap.min.js"></script>
         <!-- Otros scripts -->
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <!--<script src="js/cordova.js"></script> <!-- Quitar cuando se esté probando en HTML -->
+        <script src="js/cordova.js"></script> <!-- Quitar cuando se esté probando en HTML -->
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
         <script src="js/localizacion.js"></script>
         <script src="js/anclas.js"></script>

@@ -76,3 +76,38 @@ function setVelocidadIntervaloGeolocalizacion(valor) {
 }
 
 var geolocalizacion = window.setInterval("geolocalizar()", velocidadIntervaloGeolocalizacion);
+
+
+
+
+
+
+
+
+//Calcular ruta
+function calcularRuta(inicio, fin, modo) {
+    var modoViaje;
+    switch (modo) {
+        default:
+        case 'driving':
+            modoViaje = google.maps.DirectionsTravelMode.DRIVING;
+            break;
+        case 'walking':
+            modoViaje = google.maps.DirectionsTravelMode.WALKING;
+            break;
+    }
+    var request = {
+        origin: inicio,
+        destination: fin,
+        travelMode: modoViaje
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+function limpiarRuta(){
+    directionsDisplay.setDirections({ routes: [] }); 
+}

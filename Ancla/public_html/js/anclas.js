@@ -16,36 +16,137 @@ function placeMarker(colorAncla) {
         //Selector del color
         iconBase = "img/markers/";
         var imagen;
+        var selectColor;
         switch (colorAncla) {
+            default:
             case 'roja':
                 imagen = 'ancla_roja.png';
+                selectColor =
+                        '<option value="roja" selected>Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
+                imagen = 'ancla_roja.png';
+                selectColor =
+                        '<option value="roja" selected>Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'amarilla':
                 imagen = 'ancla_amarilla.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla" selected>Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'verde':
                 imagen = 'ancla_verde.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde" selected>Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'azul':
                 imagen = 'ancla_azul.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul" selected>Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'naranja':
                 imagen = 'ancla_naranja.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja" selected>Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'morada':
                 imagen = 'ancla_morada.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada" selected>Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'marron':
                 imagen = 'ancla_marron.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron" selected>Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'blanca':
                 imagen = 'ancla_blanca.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca" selected>Blanca</option>' +
+                        '<option value="negra">Negra</option>';
                 break;
             case 'negra':
                 imagen = 'ancla_negra.png';
+                selectColor =
+                        '<option value="roja">Roja</option>' +
+                        '<option value="amarilla">Amarilla</option>' +
+                        '<option value="verde">Verde</option>' +
+                        '<option value="azul">Azul</option>' +
+                        '<option value="naranja">Naranja</option>' +
+                        '<option value="morada">Morada</option>' +
+                        '<option value="marron">Marrón</option>' +
+                        '<option value="blanca">Blanca</option>' +
+                        '<option value="negra" selected>Negra</option>';
                 break;
-            default:
-                imagen = 'ancla_roja.png';
         }
 
         //Plantar ancla en el mapa
@@ -53,26 +154,48 @@ function placeMarker(colorAncla) {
             position: mapa.getCenter(),
             map: mapa,
             title: nombre,
+            description: "",
             animation: google.maps.Animation.DROP,
             icon: iconBase + imagen,
             shadow: iconBase + 'ancla_sombra.png'
         });
 
+        //Guardar ancla en el array
+        anclasArray.push(marcador);
+        var indice = anclasArray.length-1;
+        marcador = anclasArray[indice];
+
         //Listener al hacer clic en el ancla
         google.maps.event.addListener(marcador, 'click', function() {
             //Centrar al ancla
-            mapa.setCenter(new google.maps.LatLng(marcador.position.lat(), marcador.position.lng()));
+            switchTrakingOff();
+            mapa.setCenter(marcador.position);
             //Contenido del menú
-            document.getElementById("menuAnclaTitulo").innerHTML = '<img src="'+marcador.icon+'"/>'+marcador.title;
-            document.getElementById("menuAnclaBtnEliminar").onclick = function(){eliminarAncla(0);};
-            document.getElementById("menuAnclaBtnGuardar").onclick = function(){guardarAncla(0);};
+            document.getElementById("menuAnclaTitulo").innerHTML = '<img src="' + marcador.icon + '"/>' + marcador.title;
+            document.getElementById("inputNombre").value = marcador.title;
+            document.getElementById("inputMarcador").innerHTML = selectColor;
+            document.getElementById("textareaDescripcion").value = marcador.description;
+            document.getElementById("btnRutaCoche").onclick = function() {
+                calcularRuta(posActual.position, marcador.position, 'driving');
+                //Quitar modal
+                $("#menuAncla").modal("hide");
+            };
+            document.getElementById("btnRutaPie").onclick = function() {
+                calcularRuta(posActual.position, marcador.position, 'walking');
+                //Quitar modal
+                $("#menuAncla").modal("hide");
+            };
+            //Botones
+            document.getElementById("menuAnclaBtnEliminar").onclick = function() {
+                eliminarAncla(indice);
+            };
+            document.getElementById("menuAnclaBtnGuardar").onclick = function() {
+                guardarAncla(indice);
+            };
             //Mostrar modal
-            document.location="#menuAncla";
+            document.location = "#menuAncla";
             $('#menuAncla').modal('show');
         });
-
-        //Guardar ancla en el array
-        anclasArray.push(marcador);
 
         //Actualizar el menú de anclas
         actualizarMenuAnclas();
@@ -127,7 +250,7 @@ function centrarAncla(i) {
  * @param {int} i Índice del ancla en el vector de anclas
  * @returns {void} Elimina la posición del vector de anclas
  */
-function eliminarAncla(i){
+function eliminarAncla(i) {
     alert("Aún no elimino");
 }
 
@@ -136,7 +259,7 @@ function eliminarAncla(i){
  * @param {int} i Índice del ancla en el vector de anclas
  * @returns {void} Guarda los datos en la posición del vector de anclas indicado
  */
-function guardarAncla(i){
+function guardarAncla(i) {
     alert("Aún no guardo");
 }
 
