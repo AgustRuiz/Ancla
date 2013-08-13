@@ -91,7 +91,7 @@ function onError(err) {
     switch (err) {
         default:
         case 0:
-            msg = "<strong>Oops!</strong> Error desconocido: " + err.message
+            msg = "<strong>Oops!</strong> Error desconocido: " + err.message;
             break;
         case 1:
             msg = "<strong>Oops!</strong> Se le ha negado el permiso para recuperar una posición.";
@@ -142,4 +142,9 @@ function switchTrakingOff() {
     icono.className = "iconoEstadoOff";
     boton.className = "";
     estadoLocalizacion = false;
+}
+
+function collapseNav(){
+    //Cerrar el menú desplegable
+    $(".nav-collapse").collapse("hide");
 }

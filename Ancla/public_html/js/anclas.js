@@ -167,6 +167,8 @@ function placeMarker(colorAncla) {
 
         //Listener al hacer clic en el ancla
         google.maps.event.addListener(marcador, 'click', function() {
+            //Cerrar el menú desplegable
+            collapseNav();
             //Centrar al ancla
             switchTrakingOff();
             mapa.setCenter(marcador.position);
@@ -242,6 +244,7 @@ function irPosicion(lat, long) {
  */
 function centrarAncla(i) {
     ancla = anclasArray[i];
+    switchTrakingOff();
     irPosicion(ancla.position.lat(), ancla.position.lng());
 }
 

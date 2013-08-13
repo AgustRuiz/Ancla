@@ -31,15 +31,15 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plantar ancla<b class="caret"></b></a>
                                     <ul class="dropdown-menu" data-toggle="collapse" data-target=".nav-collapse"> <!-- Autocolapsa al hacer clic -->
-                                        <li><a href="#" onclick="placeMarker('roja')"><img src="img/markers/ancla_roja.png"/>Roja</a></li>
-                                        <li><a href="#" onclick="placeMarker('amarilla')"><img src="img/markers/ancla_amarilla.png"/>Amarilla</a></li>
-                                        <li><a href="#" onclick="placeMarker('verde')"><img src="img/markers/ancla_verde.png"/>Verde</a></li>
-                                        <li><a href="#" onclick="placeMarker('azul')"><img src="img/markers/ancla_azul.png"/>Azul</a></li>
-                                        <li><a href="#" onclick="placeMarker('naranja')"><img src="img/markers/ancla_naranja.png"/>Naranja</a></li>
-                                        <li><a href="#" onclick="placeMarker('morada')"><img src="img/markers/ancla_morada.png"/>Morada</a></li>
-                                        <li><a href="#" onclick="placeMarker('marron')"><img src="img/markers/ancla_marron.png"/>Marrón</a></li>
-                                        <li><a href="#" onclick="placeMarker('blanca')"><img src="img/markers/ancla_blanca.png"/>Blanca</a></li>
-                                        <li><a href="#" onclick="placeMarker('negra')"><img src="img/markers/ancla_negra.png"/>Negra</a></li>
+                                        <li><a href="#" onclick="placeMarker('roja')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_roja.png"/>Roja</a></li>
+                                        <li><a href="#" onclick="placeMarker('amarilla')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_amarilla.png"/>Amarilla</a></li>
+                                        <li><a href="#" onclick="placeMarker('verde')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_verde.png"/>Verde</a></li>
+                                        <li><a href="#" onclick="placeMarker('azul')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_azul.png"/>Azul</a></li>
+                                        <li><a href="#" onclick="placeMarker('naranja')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_naranja.png"/>Naranja</a></li>
+                                        <li><a href="#" onclick="placeMarker('morada')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_morada.png"/>Morada</a></li>
+                                        <li><a href="#" onclick="placeMarker('marron')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_marron.png"/>Marrón</a></li>
+                                        <li><a href="#" onclick="placeMarker('blanca')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_blanca.png"/>Blanca</a></li>
+                                        <li><a href="#" onclick="placeMarker('negra')" data-toggle="collapse" data-target=".nav-collapse"><img src="img/markers/ancla_negra.png"/>Negra</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -51,17 +51,17 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frecuencia de refresco<b class="caret"></b></a>
                                     <ul class="dropdown-menu" id="menuFrecuenciaRefresco">
-                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);">1 segundo</a></li>
-                                        <li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);">5 segundos</a></li>
-                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);">10 segundos</a></li>
-                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);">15 segundos</a></li>
-                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);">30 segundos</a></li>
-                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);">60 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>
+                                        <li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);" data-toggle="collapse" data-target=".nav-collapse">10 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>
+                                        <li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#" onclick="limpiarRuta();">Limpiar ruta</a></li>
-                                <li><a data-toggle="modal" href="#indicaciones" >Indicaciones</a></li>
-                                <li><a data-toggle="modal" href="#acercade" >Acerca de...</a></li>
+                                <li><a href="#" onclick="limpiarRuta(); collapseNav();">Limpiar ruta</a></li>
+                                <li><a data-toggle="modal" href="#indicaciones" onclick="collapseNav();">Indicaciones</a></li>
+                                <li><a data-toggle="modal" href="#acercade" onclick="collapseNav();">Acerca de...</a></li>
                             </ul>
                         </div>
                     </div>
