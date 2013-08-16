@@ -8,13 +8,23 @@ var estadoLocalizacion = true;
  * @type @exp;google@pro;maps@call;Marker
  */
 var posActual;
+
 /**
  * Mapa
  * @type @exp;google@pro;maps@call;Map
  */
 var mapa = null;
 
-directionsDisplay = new google.maps.DirectionsRenderer();
+/**
+ * Directions Render
+ * @type @exp;google@pro;maps@call;DirectionsRenderer
+ */
+var directionsDisplay = new google.maps.DirectionsRenderer();
+
+/**
+ * Directions Service
+ * @type @exp;google@pro;maps@call;DirectionsService
+ */
 var directionsService = new google.maps.DirectionsService();
 
 /**
@@ -104,17 +114,14 @@ function onError(err) {
             break;
 
     }
-    document.getElementById("map-canvas").innerHTML = "<br/><br/><br/><br/><br/><br/>" + msg;
+    document.getElementById("map-canvas").innerHTML = "<br/><br/><br/><br/><br/><br/><div class=\"error\"" + msg + "</div>";
 }
 
 /**
- * Cambia el estado del programa encendiendo/apagando el traking de la posición actual
+ * Activa/desactiva el centrado de la posición actual al realizar la geolocalización
  * @returns {void}
  */
 function switchTraking() {
-    var icono = document.getElementById("iconoEstado");
-    var boton = document.getElementById("botonEstado");
-
     if (estadoLocalizacion) {
         //Desactivar
         switchTrakingOff();
@@ -122,9 +129,12 @@ function switchTraking() {
         //Activar
         switchTrakingOn();
     }
-    //initialize();
 }
 
+/**
+ * Activa el centrado de la posición actual al realizar la geolocalización
+ * @returns {void}
+ */
 function switchTrakingOn() {
     var icono = document.getElementById("iconoEstado");
     var boton = document.getElementById("botonEstado");
@@ -135,6 +145,10 @@ function switchTrakingOn() {
     estadoLocalizacion = true;
 }
 
+/**
+ * Desactiva el centrado de la posición actual al realizar la geolocalización
+ * @returns {undefined}
+ */
 function switchTrakingOff() {
     var icono = document.getElementById("iconoEstado");
     var boton = document.getElementById("botonEstado");
@@ -144,7 +158,136 @@ function switchTrakingOff() {
     estadoLocalizacion = false;
 }
 
-function collapseNav(){
+/**
+ * Colapsa (cierra) el menú principal
+ * @returns {void}
+ */
+function collapseNav() {
     //Cerrar el menú desplegable
     $(".nav-collapse").collapse("hide");
+}
+
+/**
+ * Función para geolocalizar la posición actual
+ * @returns {void} Da el control a la funcion onSuccess en caso positivo o a la funcion onError en caso de error
+ */
+function geolocalizar() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    } else {
+        alert('Geolocalización no es soportada por su dispositivo.');
+    }
+}
+
+var velocidadIntervaloGeolocalizacion = 5000;
+/**
+ * Cambia la velocidad de geolocalización
+ * @param {int} valor Velocidad en milisegundos
+ * @returns {void}
+ */
+function setVelocidadIntervaloGeolocalizacion(valor) {
+    menu = document.getElementById("menuFrecuenciaRefresco");
+    clearInterval(geolocalizacion);
+    switch (valor) {
+        case 1000:
+            velocidadIntervaloGeolocalizacion = 1000;
+            menu.innerHTML =
+                    '<li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);" data-toggle="collapse" data-target=".nav-collapse">10 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>';
+            break;
+        case 5000:
+            velocidadIntervaloGeolocalizacion = 5000;
+            menu.innerHTML =
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>' +
+                    '<li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);" data-toggle="collapse" data-target=".nav-collapse">10 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>';
+            break;
+        case 10000:
+            velocidadIntervaloGeolocalizacion = 10000;
+            menu.innerHTML =
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>' +
+                    '<li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);" data-toggle="collapse" data-target=".nav-collapse">10 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>';
+            break;
+        case 15000:
+            velocidadIntervaloGeolocalizacion = 15000;
+            menu.innerHTML =
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);" data-toggle="collapse" data-target=".nav-collapse">10 segundos</a></li>' +
+                    '<li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>';
+            break;
+        case 30000:
+            velocidadIntervaloGeolocalizacion = 30000;
+            menu.innerHTML =
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000);" data-toggle="collapse" data-target=".nav-collapse">10 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>' +
+                    '<li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>';
+            break;
+        case 60000:
+            velocidadIntervaloGeolocalizacion = 60000;
+            menu.innerHTML =
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(1000);" data-toggle="collapse" data-target=".nav-collapse">1 segundo</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(5000);" data-toggle="collapse" data-target=".nav-collapse">5 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(10000); data-toggle="collapse" data-target=".nav-collapse"">10 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(15000);" data-toggle="collapse" data-target=".nav-collapse">15 segundos</a></li>' +
+                    '<li><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(30000);" data-toggle="collapse" data-target=".nav-collapse">30 segundos</a></li>' +
+                    '<li class="active"><a href="#" onclick="setVelocidadIntervaloGeolocalizacion(60000);" data-toggle="collapse" data-target=".nav-collapse">60 segundos</a></li>';
+            break;
+    }
+    geolocalizacion = window.setInterval("geolocalizar()", velocidadIntervaloGeolocalizacion);
+}
+var geolocalizacion = window.setInterval("geolocalizar()", velocidadIntervaloGeolocalizacion);
+
+/**
+ * Calcula la ruta entre dos puntos y enumera las indicaciones en un div
+ * @param {google.maps.LatLng()} inicio Posición de partida
+ * @param {google.maps.LatLng()} fin Posición de destino
+ * @param {google.maps.DirectionsTravelMode} modo Modo de viaje
+ * @returns {void}
+ */
+function calcularRuta(inicio, fin, modo) {
+    var modoViaje;
+    switch (modo) {
+        default:
+        case 'driving':
+            modoViaje = google.maps.DirectionsTravelMode.DRIVING;
+            break;
+        case 'walking':
+            modoViaje = google.maps.DirectionsTravelMode.WALKING;
+            break;
+    }
+    var request = {
+        origin: inicio,
+        destination: fin,
+        travelMode: modoViaje
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+/**
+ * Limpia la ruta del mapa, así como las indicaciones
+ * @returns {void}
+ */
+function limpiarRuta() {
+    directionsDisplay.setDirections({routes: []});
 }
