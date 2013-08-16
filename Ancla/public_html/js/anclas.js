@@ -20,7 +20,7 @@ function placeMarker(colorAncla) {
     if (nombre != "" && nombre != null) {
 
         //Selector del color
-        var imagen = iconBase + "ancla_" +colorAncla+".png";
+        var imagen = iconBase + "ancla_" + colorAncla + ".png";
 
         //Plantar ancla en el mapa
         var marcador = new google.maps.Marker({
@@ -30,7 +30,7 @@ function placeMarker(colorAncla) {
             description: "",
             animation: google.maps.Animation.DROP,
             icon: imagen,
-            shadow: iconBase + 'ancla_sombra.png'
+            color: colorAncla
         });
 
         //Guardar ancla en el array
@@ -38,10 +38,7 @@ function placeMarker(colorAncla) {
         var indice = anclasArray.length - 1;
         marcador = anclasArray[indice];
 
-        //Listener al hacer clic en el ancla
-        crearListenerMarcador(marcador, colorAncla, indice);
-
-        //Actualizar el menú de anclas
+        //Actualizar el menú de anclas y los listeners
         actualizarMenuAnclas();
     }
 }
@@ -232,7 +229,8 @@ function crearListenerMarcador(marcador, colorAncla, indice) {
 }
 
 /**
- * Actualiza el menú de anclas según el contenido del vector de anclas para centrar la posición al selecionar una cualquiera
+ * Actualiza el menú de anclas según el contenido del vector de anclas para centrar la posición al selecionar una cualquiera.
+ * También actualiza los listeners de las anclas
  * @returns {void}
  */
 function actualizarMenuAnclas() {
@@ -240,8 +238,13 @@ function actualizarMenuAnclas() {
     var contenidoMenuAnclas = "";
     for (var i = 0; i < anclasArray.length; i++) {
         contenidoMenuAnclas += '<li><a href="#" onclick="centrarAncla(' + i + ');"><img src="' + anclasArray[i].icon + '"/>' + anclasArray[i].title + '</a></li>';
+        crearListenerMarcador(anclasArray[i], anclasArray[i].color, i);
     }
-    menuAnclas.innerHTML = contenidoMenuAnclas;
+    if (contenidoMenuAnclas == "") {
+        menuAnclas.innerHTML = '<li class="disabled"><a href="#">No tienes ningún ancla</a></li>';
+    } else {
+        menuAnclas.innerHTML = contenidoMenuAnclas;
+    }
 }
 
 /**
@@ -281,7 +284,13 @@ function centrarAncla(i) {
  * @returns {void} Elimina la posición del vector de anclas
  */
 function eliminarAncla(i) {
-    alert("Aún no elimino");
+    if (confirm("¿Eliminar el ancla \"" + anclasArray[i].title + "\"?")) {
+        //Falta confirmar
+        anclasArray[i].setMap(null);
+        anclasArray.splice(i, 1);
+        actualizarMenuAnclas();
+        $('#menuAncla').modal('hide');
+    }
 }
 
 /**
